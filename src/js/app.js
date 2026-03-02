@@ -3,6 +3,7 @@ const wsUrl = 'wss://ahj-chat-backend-v51c.onrender.com';
 let ws;
 let currentUser = null;
 
+
 // Элементы DOM
 const loginModal = document.getElementById('login-modal');
 const loginForm = document.getElementById('login-form');
@@ -21,7 +22,7 @@ function generateId() {
 }
 
 function connect() {
-    ws = new WebSocket(wsUrl);
+    ws = new WebSocket(wsUrl + '/');;
 
     // Слушаем сообщения от сервера
     ws.addEventListener('message', (e) => {
