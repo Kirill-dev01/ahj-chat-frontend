@@ -1,4 +1,5 @@
-const wsUrl = 'ws://localhost:3000';
+// const wsUrl = 'ws://localhost:3000';
+const wsUrl = 'wss://ahj-chat-backend-v51c.onrender.com';
 let ws;
 let currentUser = null;
 
