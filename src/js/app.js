@@ -1,5 +1,5 @@
 // const wsUrl = 'ws://localhost:3000';
-const wsUrl = 'wss://ahj-chat-backend-v51c.onrender.com';
+const wsUrl = 'wss://ahj-chat-backend-v51c.onrender.com/ws';
 let ws;
 let currentUser = null;
 
@@ -16,13 +16,13 @@ const messagesContainer = document.getElementById('messages-container');
 const messageForm = document.getElementById('message-form');
 const messageInput = document.getElementById('message-input');
 
-// Простая функция генерации ID (чтобы не ставить лишние библиотеки)
+// Простая функция генерации ID 
 function generateId() {
     return Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
 }
 
 function connect() {
-    ws = new WebSocket(wsUrl + '/');;
+    ws = new WebSocket(wsUrl);
 
     // Слушаем сообщения от сервера
     ws.addEventListener('message', (e) => {
@@ -57,7 +57,7 @@ function connect() {
     });
 }
 
-// 1. Отправка формы ЛОГИНА (НАШ ОБНОВЛЕННЫЙ "УМНЫЙ" КОД)
+// 1. Отправка формы ЛОГИНА
 loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const nickname = nicknameInput.value.trim();
@@ -67,7 +67,7 @@ loginForm.addEventListener('submit', (e) => {
     if (!ws || ws.readyState === WebSocket.CLOSED) {
         loginError.textContent = 'Соединение потеряно. Переподключаемся... Нажмите еще раз через пару секунд 🔄';
         loginError.classList.remove('hidden');
-        connect(); // ВАЖНО: Запускаем подключение заново!
+        connect();
         return;
     }
 
